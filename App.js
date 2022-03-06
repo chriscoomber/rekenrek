@@ -1,6 +1,8 @@
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput } from 'react-native';
+import Rekenrek from "./Rekenrek.js";
+import styles from "./styles.js";
 
 export default function App() {
   const [number, onChangeNumber] = React.useState("0");
@@ -10,17 +12,18 @@ export default function App() {
   // Validate the input string, checking if it's a number between 0 and 20.
   // If yes - update state `submittedNumber`.
   // If no - update state `validationError`.
+  // Returns nothing.
   function validateAndSubmit(inputString) {
     // First convert to integer
     const inputNumber = Number(inputString);
 
     if (isNaN(inputNumber)) {
-      onChangeValidationError(`Oops, ${inputString} wasn't a number!`);
+      onChangeValidationError(`Oops, "${inputString}" is not a number!`);
       return;
     }
 
     if (inputNumber < 0 || inputNumber > 20) {
-      onChangeValidationError(`Oops, ${inputNumber} is not between 0 and 20!`);
+      onChangeValidationError(`Oops, "${inputNumber}" is not between 0 and 20!`);
       return;
     }
 
@@ -31,6 +34,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <Text>Please type a number between 0 and 20</Text>
       {(validationError === null) || <Text>{validationError}</Text>}
       <TextInput
@@ -40,23 +44,9 @@ export default function App() {
         keyboardType="numeric"
         onSubmitEditing={(value) => validateAndSubmit(value.nativeEvent.text)}
       />
-      <Text>{submittedNumber}</Text>
-      <StatusBar style="auto" />
+      <Rekenrek number={submittedNumber}/>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});
+
