@@ -35,7 +35,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text>Please type a number between 0 and 20</Text>
+      <Text>Please enter a number between 0 and 20</Text>
       {(validationError === null) || <Text>{validationError}</Text>}
       <TextInput
         style={styles.input}
