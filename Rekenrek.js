@@ -10,17 +10,17 @@ import styles from "./styles.js";
 // - row (either 1 or 2)
 // - position (1 to 10 for active beads, 11 to 20 for unused beads)
 const WhiteBead = (props) => {
-    var top = props.row == 1 ? 64 : 111;
+    var top = props.row == 1 ? 46 : 80;
     var left;
     if (props.position <= 10) {
       // active bead
-      left = 125 + props.position * 9;
+      left = 90 + props.position * 6.5;
     } else {
-      left = 250 + (props.position - 10) * 9
+      left = 180 + (props.position - 10) * 6.5
     }
 
     const style = {
-      width:60, height: 30, position:'absolute', left:left, top:top
+      width:43, height: 22, position:'absolute', left:left, top:top
     }
 
     return (
@@ -30,17 +30,17 @@ const WhiteBead = (props) => {
 
 // Sadly a copy-paste of WhiteBead as I didn't have time to figure out dynamic component names
 const RedBead = (props) => {
-    var top = props.row == 1 ? 64 : 111;
+    var top = props.row == 1 ? 46 : 80;
     var left;
     if (props.position <= 10) {
       // active bead
-      left = 125 + props.position * 9;
+      left = 90 + props.position * 6.5;
     } else {
-      left = 250 + (props.position - 10) * 9
+      left = 180 + (props.position - 10) * 6.5
     }
 
     const style = {
-      width:60, height: 30, position:'absolute', left:left, top:top
+      width:43, height: 22, position:'absolute', left:left, top:top
     }
 
     return (
@@ -81,7 +81,7 @@ const Rekenrek = (props) => {
 
   return (
     <View style={styles.frame }>
-      <RekenrekSvg width={500} height={200} />
+      <RekenrekSvg width={360} height={144} />
       {
         beads.map(bead => {
           if (bead.color == 'r') {
